@@ -1,0 +1,4 @@
+payment_id,cust_id,biller,amount,currency,paid_at,payment_state,funding_source,account_number,origin
+bp_30001,cust_1001,POWER_CO,120.50,USD,2026-04-17T07:25:00Z,done,bank_account,UTIL-4421,batch
+bp_30002,cust_1005,WATER_WORKS,48.30,USD,2026-04-18T06:10:00Z,queued,card,UTIL-5520,app
+bp_30003,,CITY_TAX,200.00,US,2026-04-18T07:15:00Z,done,bank_account,TAX-9001,branch

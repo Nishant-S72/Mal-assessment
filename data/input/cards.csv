@@ -1,0 +1,4 @@
+txn_ref,user_id,amount_minor,currency_code,auth_ts,state,network,merchant_id,channel
+cd_10001,cust_1001,4599,USD,2026-04-17T10:15:00Z,approved,VISA,mrc_778,app
+cd_10002,cust_1002,1250,USD,2026-04-17T11:05:00Z,declined,MASTERCARD,mrc_210,pos
+cd_10003,cust_1001,8999,EUR,2026-04-18T08:45:00Z,refunded,VISA,mrc_778,api

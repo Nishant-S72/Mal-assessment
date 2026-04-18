@@ -1,0 +1,4 @@
+transfer_id,customer,value,ccy,created_at,transfer_status,destination_account,rail,initiated_via
+tr_20001,cust_1003,250.00,USD,2026-04-17T09:00:00Z,settled,ACCT-9981,SEPA,api
+tr_20002,cust_1004,79.90,GBP,2026-04-17T09:30:00Z,processing,ACCT-1230,ACH,app
+tr_20003,cust_1002,510.75,USD,2026-04-18T14:20:00Z,error,ACCT-5512,RTGS,branch
