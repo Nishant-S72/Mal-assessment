@@ -57,6 +57,18 @@ python3 -m payment_pipeline
 streamlit run streamlit_app.py
 ```
 
+## GitHub And Streamlit Cloud
+
+Recommended repo name: `mal-unified-payments`
+
+Once the repository is pushed to GitHub, deploy on Streamlit Community Cloud with:
+
+1. Sign in to [Streamlit Community Cloud](https://share.streamlit.io/)
+2. Choose the GitHub repository
+3. Set the main file path to `streamlit_app.py`
+4. Keep Python dependencies sourced from `requirements.txt`
+5. Deploy from the `master` branch
+
 ## Expected Output
 
 Successful run summary:
