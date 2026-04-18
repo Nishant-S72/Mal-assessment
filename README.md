@@ -74,7 +74,7 @@ Once the repository is pushed to GitHub, deploy on Streamlit Community Cloud wit
 Successful run summary:
 
 ```python
-{'records_loaded': 8, 'errors': 1}
+{'records_loaded': 62, 'errors': 1}
 ```
 
 The mock data intentionally includes one invalid bill payment row to show validation behavior:

@@ -1,7 +1,7 @@
 import json
 import sqlite3
-from pathlib import Path
 
+import pandas as pd
 import streamlit as st
 
 from payment_pipeline.pipeline import OUTPUT_DIR, SQL_DIR, run
@@ -28,7 +28,9 @@ st.title("Mal Unified Payments Demo")
 st.caption("Canonical payment contract across Cards, Transfers, and Bill Payments")
 
 summary = run()
-payments = load_rows("select * from unified_payments order by event_timestamp desc")
+payments_df = pd.DataFrame(
+    load_rows("select * from unified_payments order by event_timestamp desc")
+)
 volume = load_rows(
     """
     select source_system, count(*) as payment_count, round(sum(amount), 2) as total_amount
@@ -50,12 +52,45 @@ selected_sources = st.multiselect(
     default=[row["source_system"] for row in volume],
 )
 
+filtered_payments = payments_df[payments_df["source_system"].isin(selected_sources)].copy()
+filtered_payments["event_date"] = pd.to_datetime(
+    filtered_payments["event_timestamp"]
+).dt.date
+daily_amounts = (
+    filtered_payments.groupby(["event_date", "source_system"], as_index=False)["amount"]
+    .sum()
+    .rename(columns={"amount": "total_amount"})
+)
+status_mix = (
+    filtered_payments.groupby(["payment_type", "status"], as_index=False)
+    .size()
+    .rename(columns={"size": "payment_count"})
+)
+
 st.subheader("Squad Volume")
 st.dataframe(volume, use_container_width=True, hide_index=True)
 
-filtered_payments = [
-    row for row in payments if row["source_system"] in set(selected_sources or [])
-]
+chart_left, chart_right = st.columns(2)
+with chart_left:
+    st.subheader("Daily Amount Trend")
+    st.line_chart(
+        daily_amounts,
+        x="event_date",
+        y="total_amount",
+        color="source_system",
+        use_container_width=True,
+    )
+with chart_right:
+    st.subheader("Status Mix By Payment Type")
+    st.bar_chart(
+        status_mix,
+        x="payment_type",
+        y="payment_count",
+        color="status",
+        stack=True,
+        use_container_width=True,
+    )
+
 st.subheader("Unified Payment Events")
 st.dataframe(filtered_payments, use_container_width=True, hide_index=True)
 

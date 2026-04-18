@@ -1,15 +1,15 @@
 [
   {
     "file": "bill_payments.csv",
-    "line": 4,
+    "line": 18,
     "error": "missing required field 'customer_id'; currency must be a 3-letter ISO code",
     "row": {
-      "payment_id": "bp_30003",
+      "payment_id": "bp_30017",
       "cust_id": "",
       "biller": "CITY_TAX",
       "amount": "200.00",
       "currency": "US",
-      "paid_at": "2026-04-18T07:15:00Z",
+      "paid_at": "2026-04-07T07:15:00Z",
       "payment_state": "done",
       "funding_source": "bank_account",
       "account_number": "TAX-9001",
